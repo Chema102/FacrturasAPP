@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FacturasAPP.DAC.Models;
-
+﻿namespace FacturasAPP.DAC.Models;
 public partial class FacturaDetalle
 {
     public int Id { get; set; }

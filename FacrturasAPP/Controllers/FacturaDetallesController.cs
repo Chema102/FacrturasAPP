@@ -13,7 +13,7 @@ namespace FacrturasAPP.Controllers
         //public FacturaDetallesController(FctContext context)
         //{
         //    _context = context;
-    
+
         //}
 
         //public async Task<IActionResult> Index()
@@ -45,7 +45,7 @@ namespace FacrturasAPP.Controllers
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,FacturaId,ProductoId,Precio")] FacturaDetalle facturaDetalle)
+        //public async Task<IActionResult> Create([Bind("Id,FacturaId,ProductoId,Precio")] FacturaDetalleDto facturaDetalle)
         //{
 
         //    facturaDetalle.Crt = DateTime.Now;
@@ -141,23 +141,14 @@ namespace FacrturasAPP.Controllers
         //    return _context.FacturaDetalles.Any(e => e.Id == id && e.Dltt == false);
         //}
 
-        //private async Task<FacturaDetalle?> GetById(int id)
-        //{
-        //    var facturaDetalle = await _context.FacturaDetalles
-        //        .Include(f => f.Factura)
-        //        .Include(f => f.Producto)
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(f => f.Id == id && f.Dltt == false);
 
-        //    return facturaDetalle;
-        //}
 
         //private void ListJoins()
         //{
         //    ViewData["FacturaId"] = new SelectList(_context.Facturas.Where(m => m.Dltt == false)
         //        .Select(m => new { Id = m.Id, Factura = m.Total.ToString() + "$ - " + m.Fecha }), "Id", "Factura");
         //    ViewData["ProductoId"] = new SelectList(_context.Productos.Where(m => m.Dltt == false), "Id", "Id");
-            
+
         //}
     }
 }
