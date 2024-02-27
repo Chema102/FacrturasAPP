@@ -14,5 +14,8 @@ public partial class FacturaDetalle
     public DateTime? Uppdt { get; set; }
 
     public bool? Dltt { get; set; }
+    public virtual Factura Factura { get; set; } = null!;
+
+    public virtual Product Producto { get; set; } = null!;
 }
 

@@ -7,8 +7,8 @@ namespace FacturasAPP.DTO.Models.Respository
     {
         Task<List<FacturaDetalle>> Get();
         Task<FacturaDetalle?> GetById(int id);
-        Task<bool> Add(FacturaDetalleDto product);
-        Task<bool> Delete(string id);
-        Task<bool> Update(FacturaDetalleDto id);
+        Task<bool> Add(FacturaDetalleDto facturaDetalleDto);
+        Task<bool> Delete(int id);
+        Task<bool> Update(FacturaDetalleDto facturaDetalleDto);
     }
 }
