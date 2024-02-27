@@ -13,6 +13,7 @@ namespace FacturasAPP.SRV
         {
             
             services.AddScoped<IProductosServices, ProductsServices>();
+            services.AddScoped<IFacturaServices, FacturaServices>();
             services.AddAutoMapper(typeof(MapperProfile).Assembly);
         }
 

@@ -7,6 +7,6 @@
 
         public required decimal Total { get; set; }
 
-        public DateTime? Crt { get; set; }
+        public DateTime? Create { get; set; }
     }
 }
