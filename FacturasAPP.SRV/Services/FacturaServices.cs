@@ -71,9 +71,7 @@ namespace FacturasAPP.SRV.Services
 
         public async Task<bool> Update(FacturaDto productDto)
         {
-            var isUpdate = await _facturaRepository.Update(productDto);
-
-            return isUpdate;
+            return await _facturaRepository.Update(productDto); ;
         }
 
     }
