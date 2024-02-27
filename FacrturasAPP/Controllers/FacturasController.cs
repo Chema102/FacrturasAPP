@@ -1,141 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using FacrturasAPP.Models;
-using System.Runtime.Intrinsics.Arm;
+﻿using Microsoft.AspNetCore.Mvc;
+using FacturasAPP.DTO.Models.Services;
+using FacturasAPP.DTO.Dto;
 
 namespace FacrturasAPP.Controllers
 {
     public class FacturasController : Controller
     {
-        //private readonly FctContext _context;
+        private readonly IFacturaServices _facturaServices;
 
-        //public FacturasController(FctContext context)
-        //{
-        //    _context = context;
-        //}
+        public FacturasController(IFacturaServices facturaServices)
+        {
+            _facturaServices = facturaServices;
+        }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Facturas.AsNoTracking().Where(m => m.Dltt == false).ToListAsync());
-        //}
+        public async Task<IActionResult> Index()
+        {
+            return View(await _facturaServices.Get());
+        }
 
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    var factura = await GetById(id);
+        public async Task<IActionResult> Details(int id)
+        {
+            var factura = await _facturaServices.GetById(id);
 
-        //    if (factura == null)
-        //        return NotFound();
+            if (factura == null)
+                return NotFound();
 
-        //    return View(factura);
-        //}
+            return View(factura);
+        }
 
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Fecha,Total")] Factura factura)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        factura.Crt = DateTime.Now;
-        //        factura.Uppdt = DateTime.Now;
-        //        factura.Dltt = false;
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Fecha,Total")] FacturaDto factura)
+        {
+            if (ModelState.IsValid)
+            {
+                var isAdd = await _facturaServices.Add(factura);
 
-        //        _context.Add(factura);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(factura);
-        //}
+                if (true)
+                    return RedirectToAction(nameof(Index));
+            }
+            return View(factura);
+        }
 
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var factura = await GetById(id);
+        public async Task<IActionResult> Edit(int id)
+        {
+            var factura = await _facturaServices.GetById(id);
 
-        //    if (factura == null)
-        //        return NotFound();
+            if (factura == null)
+                return NotFound();
 
-        //    return View(factura);
-        //}
+            return View(factura);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Total,Crt,Uppdt,Dltt")] Factura factura)
-        //{
-        //    if (id != factura.Id)
-        //        return NotFound();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Total")] FacturaDto factura)
+        {
+            if (id != factura.Id)
+                return NotFound();
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(factura);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!FacturaExists(factura.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(factura);
-        //}
+            if (ModelState.IsValid)
+            {
+                var isUpdate = await _facturaServices.Update(factura);
 
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var factura = await GetById(id);
+                if (isUpdate)
+                    return RedirectToAction(nameof(Index));
+            }
+        
+            return View(factura);
+        }
 
-        //    if (factura == null)
-        //        return NotFound();
+        public async Task<IActionResult> Delete(int id)
+        {
+            var factura = await _facturaServices.GetById(id);
 
-        //    return View(factura);
-        //}
+            if (factura == null)
+                return NotFound();
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var factura = await GetById(id);
+            return View(factura);
+        }
 
-        //    if (factura != null)
-        //    {
-        //        factura.Dltt = true;
-        //        factura.Uppdt= DateTime.Now;
-        //        _context.Facturas.Update(factura);
-        //    }
-
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool FacturaExists(int id)
-        //{
-        //    return _context.Facturas.Any(e => e.Id == id && e.Dltt == false);
-        //}
-
-        //public async Task<Factura?> GetById(int id)
-        //{
-        //    var factura = await _context.Facturas
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(f => f.Id == id && f.Dltt == false);
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var isDelete = await _facturaServices.Delete(id);
             
-        //    return factura;
-        //}
+            if (!isDelete)
+                return NotFound();
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
