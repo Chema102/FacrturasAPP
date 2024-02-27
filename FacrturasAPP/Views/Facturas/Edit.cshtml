@@ -23,6 +23,9 @@
                 <input asp-for="Total" class="form-control" />
                 <span asp-validation-for="Total" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Crt" />
+            <input type="hidden" asp-for="Uppdt" />
+            <input type="hidden" asp-for="Dltt" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -23,8 +23,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id && m.Dltt == false);
+            var producto = await GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -60,7 +59,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -98,8 +97,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id && m.Dltt == false);
+            var producto = await GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -116,7 +114,7 @@ namespace FacrturasAPP.Controllers
             if (producto != null)
             {
                 producto.Dltt = true;
-
+                producto.Uppdt = DateTime.Now;
                 _context.Productos.Update(producto);
             }
 
@@ -131,12 +129,9 @@ namespace FacrturasAPP.Controllers
 
         public async Task<Producto?> GetById(string id)
         {
-
             var producto = await _context.Productos
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (producto == null)
-                return null;
 
             return producto;
         }
