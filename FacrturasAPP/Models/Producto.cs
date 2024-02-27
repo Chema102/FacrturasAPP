@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FacrturasAPP.Models;
 
@@ -15,5 +14,4 @@ public partial class Producto
 
     public bool? Dltt { get; set; }
 
-    public virtual ICollection<FacturaDetalle> FacturaDetalles { get; set; } = new List<FacturaDetalle>();
 }

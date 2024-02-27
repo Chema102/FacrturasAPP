@@ -12,27 +12,20 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" maxlength="10"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </divId
             <div class="form-group">
                 <label asp-for="Descripccion" class="control-label"></label>
                 <input asp-for="Descripccion" class="form-control" />
                 <span asp-validation-for="Descripccion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Crt" class="control-label"></label>
-                <input asp-for="Crt" class="form-control" />
-                <span asp-validation-for="Crt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Uppdt" class="control-label"></label>
-                <input asp-for="Uppdt" class="form-control" />
-                <span asp-validation-for="Uppdt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dltt" class="control-label"></label>
-                <input asp-for="Dltt" class="form-control" />
-                <span asp-validation-for="Dltt" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Crt" />
+            <input type="hidden" asp-for="Uppdt" />
+            <input type="hidden" asp-for="Dltt" />
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

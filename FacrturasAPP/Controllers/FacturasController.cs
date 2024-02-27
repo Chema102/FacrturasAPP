@@ -53,10 +53,14 @@ namespace FacrturasAPP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha,Total,Crt,Uppdt,Dltt")] Factura factura)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,Total")] Factura factura)
         {
             if (ModelState.IsValid)
             {
+                factura.Crt = DateTime.Now;
+                factura.Uppdt = DateTime.Now;
+                factura.Dltt = false;
+
                 _context.Add(factura);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

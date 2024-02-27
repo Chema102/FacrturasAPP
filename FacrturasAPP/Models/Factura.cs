@@ -17,5 +17,4 @@ public partial class Factura
 
     public bool? Dltt { get; set; }
 
-    public virtual ICollection<FacturaDetalle> FacturaDetalles { get; set; } = new List<FacturaDetalle>();
 }

@@ -64,15 +64,7 @@ public partial class FctContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("UPPDT");
 
-            entity.HasOne(d => d.Factura).WithMany(p => p.FacturaDetalles)
-                .HasForeignKey(d => d.FacturaId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_FacturaDetalle_Facturas");
 
-            entity.HasOne(d => d.Producto).WithMany(p => p.FacturaDetalles)
-                .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_FacturaDetalle_Productos");
         });
 
         modelBuilder.Entity<Producto>(entity =>
