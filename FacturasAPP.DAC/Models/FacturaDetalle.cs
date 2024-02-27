@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FacrturasAPP.Models;
+namespace FacturasAPP.DAC.Models;
 
 public partial class FacturaDetalle
 {
@@ -9,7 +9,7 @@ public partial class FacturaDetalle
 
     public int FacturaId { get; set; }
 
-    public required string ProductoId { get; set; }
+    public string ProductoId { get; set; } = null!;
 
     public decimal? Precio { get; set; }
 
@@ -18,8 +18,5 @@ public partial class FacturaDetalle
     public DateTime? Uppdt { get; set; }
 
     public bool? Dltt { get; set; }
-
-    public required Factura Factura { get; set; }
-
-    public required Producto Producto { get; set; }
 }
+

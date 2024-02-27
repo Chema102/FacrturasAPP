@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FacrturasAPP.Models.Producto>
+﻿@model IEnumerable<FacturasAPP.DTO.Dto.ProducDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,15 +16,11 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripccion)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Crt)
+                @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uppdt)
-            </th>
-
             <th></th>
         </tr>
     </thead>
@@ -35,14 +31,12 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripccion)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Crt)
+                @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uppdt)
-            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

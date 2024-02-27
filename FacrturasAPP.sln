@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacrturasAPP", "FacrturasAPP\FacrturasAPP.csproj", "{B482251F-40C9-487F-BB5D-23176D2B8EF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacrturasAPP", "FacrturasAPP\FacrturasAPP.csproj", "{B482251F-40C9-487F-BB5D-23176D2B8EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturasAPP.SRV", "FacturasAPP.SRV\FacturasAPP.SRV.csproj", "{B5CC9800-4F7F-4A83-A616-1A1C8923E651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturasAPP.REP", "FacturasAPP.REP\FacturasAPP.REP.csproj", "{41A6A6E2-E4DA-432B-905E-ED76FA71E4FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturasAPP.DTO", "FacturasAPP.DTO\FacturasAPP.DTO.csproj", "{2F4A138E-DDDC-4258-8563-A46C1F6FD66B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturasAPP.DAC", "FacturasAPP.DAC\FacturasAPP.DAC.csproj", "{78779310-7CD6-481D-A0E9-2532833432BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{B482251F-40C9-487F-BB5D-23176D2B8EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B482251F-40C9-487F-BB5D-23176D2B8EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B482251F-40C9-487F-BB5D-23176D2B8EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CC9800-4F7F-4A83-A616-1A1C8923E651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CC9800-4F7F-4A83-A616-1A1C8923E651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CC9800-4F7F-4A83-A616-1A1C8923E651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CC9800-4F7F-4A83-A616-1A1C8923E651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A6A6E2-E4DA-432B-905E-ED76FA71E4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A6A6E2-E4DA-432B-905E-ED76FA71E4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A6A6E2-E4DA-432B-905E-ED76FA71E4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A6A6E2-E4DA-432B-905E-ED76FA71E4FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F4A138E-DDDC-4258-8563-A46C1F6FD66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4A138E-DDDC-4258-8563-A46C1F6FD66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F4A138E-DDDC-4258-8563-A46C1F6FD66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4A138E-DDDC-4258-8563-A46C1F6FD66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78779310-7CD6-481D-A0E9-2532833432BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78779310-7CD6-481D-A0E9-2532833432BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78779310-7CD6-481D-A0E9-2532833432BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78779310-7CD6-481D-A0E9-2532833432BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FacrturasAPP.Models;
+using FacturasAPP.DTO.Models.Services;
+using FacturasAPP.DTO.Dto;
 
 namespace FacrturasAPP.Controllers
 {
     public class ProductosController : Controller
     {
-        private readonly FctContext _context;
-
-        public ProductosController(FctContext context)
+        private readonly IProductosServices _productosServices;
+        public ProductosController(IProductosServices productosServices)
         {
-            _context = context;
+            _productosServices = productosServices;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Productos.AsNoTracking().Where(m => m.Dltt == false).ToListAsync());
+            return View(await _productosServices.Get());
         }
 
         public async Task<IActionResult> Details(string id)
@@ -23,7 +22,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await GetById(id);
+            var producto = await _productosServices.GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -38,17 +37,14 @@ namespace FacrturasAPP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripccion,Crt,Uppdt,Dltt")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Description")] ProducDto producto)
         {
             if (ModelState.IsValid)
             {
-                producto.Crt = DateTime.Now;
-                producto.Uppdt = DateTime.Now;
-                producto.Dltt = false;
+                var isResult = await _productosServices.Add(producto);
 
-                _context.Add(producto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (isResult) 
+                    return RedirectToAction(nameof(Index));
             }
 
             return View(producto);
@@ -59,7 +55,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await GetById(id);
+            var producto = await _productosServices.GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -69,25 +65,17 @@ namespace FacrturasAPP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Descripccion,Crt,Uppdt,Dltt")] Producto producto)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Description,CreatedDate")] ProducDto producto)
         {
             if (id != producto.Id)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    producto.Uppdt = DateTime.Now;
+                var isUpdate = await _productosServices.Update(producto);
 
-                    _context.Update(producto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    return NotFound(ex);
-                }
-                return RedirectToAction(nameof(Index));
+                if(isUpdate)
+                    return RedirectToAction(nameof(Index));
             }
             return View(producto);
         }
@@ -97,7 +85,7 @@ namespace FacrturasAPP.Controllers
             if (id == null)
                 return NotFound();
 
-            var producto = await GetById(id);
+            var producto = await _productosServices.GetById(id);
 
             if (producto == null)
                 return NotFound();
@@ -109,31 +97,13 @@ namespace FacrturasAPP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var producto = await GetById(id);
+            var isDelete = await _productosServices.Delete(id);
+            
+            if(!isDelete)
+                return NotFound();
 
-            if (producto != null)
-            {
-                producto.Dltt = true;
-                producto.Uppdt = DateTime.Now;
-                _context.Productos.Update(producto);
-            }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductoExists(string id)
-        {
-            return _context.Productos.Any(e => e.Id == id && e.Dltt == false);
-        }
-
-        public async Task<Producto?> GetById(string id)
-        {
-            var producto = await _context.Productos
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            return producto;
-        }
     }
 }

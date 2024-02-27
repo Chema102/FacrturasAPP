@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace FacrturasAPP.Models;
+namespace FacturasAPP.DAC.Models;
 
-public partial class Producto
+public partial class Product
 {
     public string Id { get; set; } = null!;
 

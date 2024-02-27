@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FacrturasAPP.Models;
+namespace FacturasAPP.DAC.Models;
 
 public partial class Factura
 {
