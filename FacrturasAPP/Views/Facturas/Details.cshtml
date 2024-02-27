@@ -1,4 +1,4 @@
-﻿@* @model FacrturasAPP.Models.Factura
+﻿@model FacturasAPP.DTO.Dto.FacturaDto
 
 @{
     ViewData["Title"] = "Details";
@@ -10,6 +10,12 @@
     <h4>Factura</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Fecha)
         </dt>
@@ -26,10 +32,8 @@
             Creado
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Crt)
+            @Html.DisplayFor(model => model.Create)
         </dd>
-
-        
 
     </dl>
 </div>
@@ -37,4 +41,3 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
- *@

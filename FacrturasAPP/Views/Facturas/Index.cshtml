@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<FacrturasAPP.Models.Factura>
+﻿@model IEnumerable<FacturasAPP.DTO.Dto.FacturaDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Fecha)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Crt)
+                @Html.DisplayNameFor(model => model.Fecha)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uppdt)
+            <th>    
+                @Html.DisplayNameFor(model => model.Create)
             </th>
             <th></th>
         </tr>
@@ -31,16 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Crt)
+                @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Uppdt)
+                @Html.DisplayFor(modelItem => item.Create)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -51,4 +51,3 @@
 }
     </tbody>
 </table>
- *@
