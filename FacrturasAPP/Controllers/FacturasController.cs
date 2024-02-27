@@ -26,9 +26,6 @@ namespace FacrturasAPP.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-                return NotFound();
-
             var factura = await GetById(id);
 
             if (factura == null)
@@ -132,7 +129,7 @@ namespace FacrturasAPP.Controllers
             return _context.Facturas.Any(e => e.Id == id && e.Dltt == false);
         }
 
-        private async Task<Factura?> GetById(int id)
+        public async Task<Factura?> GetById(int id)
         {
             var factura = await _context.Facturas
                 .AsNoTracking()

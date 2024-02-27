@@ -9,7 +9,7 @@ public partial class FacturaDetalle
 
     public int FacturaId { get; set; }
 
-    public string ProductoId { get; set; } = null!;
+    public required string ProductoId { get; set; }
 
     public decimal? Precio { get; set; }
 
@@ -19,7 +19,7 @@ public partial class FacturaDetalle
 
     public bool? Dltt { get; set; }
 
-    public virtual Factura Factura { get; set; } = null!;
+    public required Factura Factura { get; set; }
 
-    public virtual Producto Producto { get; set; } = null!;
+    public required Producto Producto { get; set; }
 }
