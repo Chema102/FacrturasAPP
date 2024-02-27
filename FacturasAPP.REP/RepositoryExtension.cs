@@ -12,6 +12,7 @@ namespace FacturasAPP.REP
         public static void AddProductsRepositoryConfigure(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IFacturaRepository, FacturaRepository>();
             services.AddDbContext<FctContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("DBContext"));

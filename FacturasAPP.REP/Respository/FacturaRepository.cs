@@ -3,49 +3,49 @@ using FacturasAPP.DTO.Dto;
 using FacturasAPP.DTO.Models.Respository;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace FacturasAPP.REP.Respository
 {
-    public class ProductsRepository : IProductsRepository
+    public class FacturaRepository : IFacturaRepository
     {
         private readonly FctContext _fctContext;
-        public ProductsRepository(FctContext fctContext)
+        public FacturaRepository(FctContext fctContext)
         {
             _fctContext = fctContext;
         }
-
-        public async Task<List<Product>> Get()
+        public async Task<List<Factura>> Get()
         {
-            return await _fctContext.Productos.AsNoTracking().Where(m => m.Dltt == false).ToListAsync();
+            var invoices = await _fctContext.Facturas
+                .AsNoTracking()
+                .Where(m => m.Dltt == false)
+                .ToListAsync();
+
+            return invoices;
         }
 
-        public async Task<Product> GetById(string id)
+        public async Task<Factura> GetById(int id)
         {
-            var producto = await _fctContext.Productos
+            var producto = await _fctContext.Facturas
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id && m.Dltt == false);
 
             return producto;
         }
-
-        public async Task<bool> Add(ProducDto productDto)
+        public async Task<bool> Add(FacturaDto invoiceDto)
         {
-            var product = new Product
+            var invoice = new Factura
             {
-                Id = productDto.Id,
-                Descripccion = productDto.Description,
+                Id = invoiceDto.Id,
+                Total = invoiceDto.Total,
+                Fecha = invoiceDto.Fecha,
                 Crt = DateTime.Now,
                 Uppdt = DateTime.Now,
                 Dltt = false
             };
-            
             try
             {
-                _fctContext.Productos.Add(product);
+                _fctContext.Facturas.Add(invoice);
                 var isProduct = await _fctContext.SaveChangesAsync();
-
                 return isProduct > 0;
-
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -53,16 +53,15 @@ namespace FacturasAPP.REP.Respository
                 return false;
             }
         }
-
-        public async Task<bool> Delete(string id)
+        public async Task<bool> Delete(int id)
         {
             try
             {
-                var product = await GetById(id);
+                var invoice = await GetById(id);
 
-                product.Dltt = true;
-                product.Uppdt = DateTime.Now;
-                _fctContext.Productos.Update(product);
+                invoice.Dltt = true;
+                invoice.Uppdt = DateTime.Now;
+                _fctContext.Facturas.Update(invoice);
                 var isSave = await _fctContext.SaveChangesAsync();
 
                 return isSave > 0;
@@ -74,21 +73,19 @@ namespace FacturasAPP.REP.Respository
                 return false;
             }
         }
-
-        public async Task<bool> Update(ProducDto producDto)
+        public async Task<bool> Update(FacturaDto invoiceDto)
         {
-            var product = await GetById(producDto.Id);
+            var invoice = await GetById(invoiceDto.Id);
 
-            if(product == null)
+            if (invoice == null)
                 return false;
-
             try
             {
-                product.Id = producDto.Id;
-                product.Descripccion = producDto.Description;
-                product.Uppdt = DateTime.Now;
+                invoice.Total = invoiceDto.Total;
+                invoice.Fecha = invoiceDto.Fecha;
+                invoice.Uppdt = DateTime.Now;
 
-                _fctContext.Productos.Update(product);
+                _fctContext.Facturas.Update(invoice);
 
                 var isSave = await _fctContext.SaveChangesAsync();
                 return isSave > 0;
@@ -101,5 +98,6 @@ namespace FacturasAPP.REP.Respository
             }
 
         }
+
     }
 }
