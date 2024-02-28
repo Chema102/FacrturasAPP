@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace FacturasAPP.DAC.Models;
 
-namespace FacrturasAPP.Models;
-
-public partial class Producto
+public partial class Product
 {
     public string Id { get; set; } = null!;
 
@@ -15,5 +12,4 @@ public partial class Producto
 
     public bool? Dltt { get; set; }
 
-    public virtual ICollection<FacturaDetalle> FacturaDetalles { get; set; } = new List<FacturaDetalle>();
 }

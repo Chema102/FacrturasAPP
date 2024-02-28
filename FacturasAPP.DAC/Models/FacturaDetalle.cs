@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FacrturasAPP.Models;
-
+﻿namespace FacturasAPP.DAC.Models;
 public partial class FacturaDetalle
 {
     public int Id { get; set; }
@@ -18,8 +14,8 @@ public partial class FacturaDetalle
     public DateTime? Uppdt { get; set; }
 
     public bool? Dltt { get; set; }
-
     public virtual Factura Factura { get; set; } = null!;
 
-    public virtual Producto Producto { get; set; } = null!;
+    public virtual Product Producto { get; set; } = null!;
 }
+

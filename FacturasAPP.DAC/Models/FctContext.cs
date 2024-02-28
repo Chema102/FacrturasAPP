@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace FacrturasAPP.Models;
+namespace FacturasAPP.DAC.Models;
 
 public partial class FctContext : DbContext
 {
@@ -19,11 +19,11 @@ public partial class FctContext : DbContext
 
     public virtual DbSet<FacturaDetalle> FacturaDetalles { get; set; }
 
-    public virtual DbSet<Producto> Productos { get; set; }
+    public virtual DbSet<Product> Productos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=PIPO\\SQLEXPRESS; Database=FCT; Trusted_Connection=True; TrustServerCertificate=True ");
+    {
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -64,18 +64,10 @@ public partial class FctContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("UPPDT");
 
-            entity.HasOne(d => d.Factura).WithMany(p => p.FacturaDetalles)
-                .HasForeignKey(d => d.FacturaId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_FacturaDetalle_Facturas");
 
-            entity.HasOne(d => d.Producto).WithMany(p => p.FacturaDetalles)
-                .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_FacturaDetalle_Productos");
         });
 
-        modelBuilder.Entity<Producto>(entity =>
+        modelBuilder.Entity<Product>(entity =>
         {
             entity.Property(e => e.Id)
                 .HasMaxLength(10)

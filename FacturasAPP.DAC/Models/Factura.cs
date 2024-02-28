@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FacrturasAPP.Models;
+namespace FacturasAPP.DAC.Models;
 
 public partial class Factura
 {
@@ -17,5 +17,4 @@ public partial class Factura
 
     public bool? Dltt { get; set; }
 
-    public virtual ICollection<FacturaDetalle> FacturaDetalles { get; set; } = new List<FacturaDetalle>();
 }
