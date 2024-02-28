@@ -9,5 +9,6 @@ namespace FacturasAPP.DTO.Models.Services
         Task<bool> Delete(int id);
         Task<bool> Add(FacturaDetalleDto invoiceDto);
         Task<bool> Update(FacturaDetalleDto invoiceDto);
+        Task<ObjetSelect> GetDataSelect();
     }
 }

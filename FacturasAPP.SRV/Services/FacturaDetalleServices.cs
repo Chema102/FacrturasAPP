@@ -9,10 +9,11 @@ namespace FacturasAPP.SRV.Services
     {
         private readonly IFacturaDetalleRepository _facturaDetalleRepository;
         private readonly IMapper _mapper;
-        public FacturaDetalleServices(IFacturaDetalleRepository facturaDetalleRepository, IMapper mapper)
+        public FacturaDetalleServices(IFacturaDetalleRepository facturaDetalleRepository,IMapper mapper)
         {
             _facturaDetalleRepository = facturaDetalleRepository;
             _mapper = mapper;
+
         }
 
         public async Task<List<FacturaDetalleDto>> Get()
@@ -49,6 +50,23 @@ namespace FacturasAPP.SRV.Services
         { 
             return await _facturaDetalleRepository.Update(invoiceDto);
         }
+
+        public async Task<ObjetSelect> GetDataSelect()
+        {
+            var result = _facturaDetalleRepository.GetDataSelect();
+
+            var select1 = _mapper.Map<List<SelectDto>>(result.Factura);
+            var select2 = _mapper.Map<List<SelectDto>>(result.Product);
+
+            var objetSelect = new ObjetSelect
+            {
+                Factura= select1 ,
+                Producto = select2
+            };
+
+            return objetSelect;
+        }
+
 
     }
 }

@@ -17,7 +17,7 @@ namespace FacturasAPP.REP
             services.AddDbContext<FctContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("DBContext"));
-            });
+            },ServiceLifetime.Scoped);
 
         }
     }

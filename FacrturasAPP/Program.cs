@@ -1,6 +1,5 @@
 using FacturasAPP.SRV;
 using FacturasAPP.REP;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

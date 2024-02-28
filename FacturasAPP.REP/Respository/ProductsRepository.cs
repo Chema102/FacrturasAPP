@@ -16,7 +16,9 @@ namespace FacturasAPP.REP.Respository
 
         public async Task<List<Product>> Get()
         {
-            return await _fctContext.Productos.AsNoTracking().Where(m => m.Dltt == false).ToListAsync();
+            var product = await _fctContext.Productos.AsNoTracking().Where(m => m.Dltt == false).ToListAsync();
+
+            return product ;
         }
 
         public async Task<Product> GetById(string id)

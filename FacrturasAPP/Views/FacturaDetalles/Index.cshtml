@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<FacrturasAPP.Models.FacturaDetalle>
+﻿@model IEnumerable<FacturasAPP.DTO.Dto.FacturaDetalleDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacturaId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ProductoId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Crt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uppdt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Factura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Producto)
             </th>
             <th></th>
         </tr>
@@ -34,19 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacturaId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ProductoId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Crt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uppdt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Factura.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Producto.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -57,4 +57,3 @@
 }
     </tbody>
 </table>
- *@

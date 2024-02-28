@@ -10,5 +10,6 @@ namespace FacturasAPP.DTO.Models.Respository
         Task<bool> Add(FacturaDetalleDto facturaDetalleDto);
         Task<bool> Delete(int id);
         Task<bool> Update(FacturaDetalleDto facturaDetalleDto);
+        SelectRepositoryDto GetDataSelect();
     }
 }

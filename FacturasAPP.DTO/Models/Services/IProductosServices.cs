@@ -1,4 +1,5 @@
-﻿using FacturasAPP.DTO.Dto;
+﻿using FacturasAPP.DAC.Models;
+using FacturasAPP.DTO.Dto;
 
 namespace FacturasAPP.DTO.Models.Services
 {

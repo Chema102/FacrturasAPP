@@ -10,6 +10,7 @@ namespace FacturasAPP.REP.Respository
         private readonly FctContext _fctContext;
         public FacturaDetalleRepository(FctContext fctContext)
         {
+
             _fctContext = fctContext;
         }
 
@@ -68,7 +69,7 @@ namespace FacturasAPP.REP.Respository
 
             try
             {
-                _fctContext.FacturaDetalles.Add(invoiceDetail);
+                _fctContext.FacturaDetalles.Update(invoiceDetail);
                 var isSave = await _fctContext.SaveChangesAsync();
 
                 return isSave > 0;
@@ -104,5 +105,16 @@ namespace FacturasAPP.REP.Respository
                 return false;
             }
         }
+
+        public SelectRepositoryDto GetDataSelect()
+        {
+            var factura = _fctContext.Facturas.AsNoTracking().Where(m => m.Dltt == false).ToList();
+
+            var producto = _fctContext.Productos.AsNoTracking().Where(m => m.Dltt == false).ToList();
+
+            return new SelectRepositoryDto { Factura= factura, Product = producto };
+        }
+
+
     }
 }

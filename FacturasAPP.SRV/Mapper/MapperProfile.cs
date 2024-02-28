@@ -8,7 +8,13 @@ namespace FacturasAPP.SRV.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<Product, ProducDto>();
+            CreateMap<FacturaDetalle, FacturaDetalleDto>();
+            CreateMap<Factura, SelectDto>()
+                .ForMember(dest => dest.Select,
+                  opt => opt.MapFrom(src => src.Total.ToString() + "$ - " + src.Fecha));
+            CreateMap<Product, SelectDto>()
+                .ForMember(dest => dest.Select,
+                opt => opt.MapFrom(src => src.Id.ToString()));
         }
     }
 }
